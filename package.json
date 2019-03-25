@@ -4,6 +4,13 @@
   "description": "Sprintf function for javascript.",
   "main": "dist/index.js",
   "esnext": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/jitesoft/open-source/javascript/sprintf"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/jitesoft/open-source/javascript/sprintf/issues"
+  },
   "scripts": {
     "test": "jest"
   },
