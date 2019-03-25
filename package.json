@@ -1,0 +1,32 @@
+{
+  "name": "@jitesoft/sprintf",
+  "version": "1.0.0",
+  "description": "Sprintf function for javascript.",
+  "main": "dist/index.js",
+  "esnext": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "sprintf",
+    "format",
+    "string"
+  ],
+  "author": "Johannes Tegnér <johannes@jitesoft.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "core-js": "^3.0.0",
+    "@babel/core": "^7.4.0",
+    "@jitesoft/babel-preset-main": "^1.0.0",
+    "@jitesoft/events": "^1.1.3",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
+    "eslint": "^5.15.3",
+    "jest": "^24.5.0",
+    "semistandard": "^13.0.1"
+  }
+}
