@@ -3,25 +3,15 @@
     "test": {
       "presets": [
         [
-          "@jitesoft/main", {
-          "transformRuntime": {
-            "corejs": false,
-            "useESModules": false
+          "@jitesoft/main",
+          {
+            "modules": "commonjs"
           }
-        }
         ]
       ]
     }
   },
   "presets": [
-    [
-      "@jitesoft/main",
-      {
-        "transformRuntime": {
-          "corejs": false,
-          "useESModules": false
-        }
-      }
-    ]
+    "@jitesoft/main"
   ]
 }

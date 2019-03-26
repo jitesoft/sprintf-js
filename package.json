@@ -21,12 +21,18 @@
     "format",
     "string"
   ],
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "text-summary"
+    ]
+  },
   "author": "Johannes Tegnér <johannes@jitesoft.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/runtime": "^7.4.2",
     "@babel/core": "^7.4.0",
-    "@jitesoft/babel-preset-main": "^1.0.0",
+    "@jitesoft/babel-preset-main": "^1.1.2",
     "babel-loader": "^8.0.5",
     "cross-env": "^5.2.0",
     "webpack": "^4.29.6",
