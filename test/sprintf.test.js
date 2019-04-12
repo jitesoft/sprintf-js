@@ -100,6 +100,10 @@ describe('Tests for sprintf.', () => {
         expect(sprintf('Abc %j %j EFG', '5')).toEqual('Abc "5" %j EFG');
         expect(sprintf('Abc %j %j %j %j EFG', {}, {a:'b'}, ['a', 45], [])).toEqual('Abc {} {"a":"b"} ["a",45] [] EFG');
       });
+
+      test('Percent.', () => {
+        expect(sprintf('ABC %% %% %%')).toEqual('ABC % % %');
+      });
     });
   });
 

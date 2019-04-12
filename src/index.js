@@ -27,7 +27,7 @@
  */
 export default function sprintf(format, ...args) {
   const lastIndex = format.lastIndexOf('%');
-  if (args.length === 0 || lastIndex === -1) {
+  if (lastIndex === -1) {
     return format;
   }
 
@@ -39,17 +39,20 @@ export default function sprintf(format, ...args) {
   for (let i = 0; i < len; i++) {
     char = format.charAt(i);
     if (char === '%') {
-      // Has next?
       if (i !== len) {
-        // Yes next, check next
         char = format.charAt(++i);
         if (char !== '%') { // If %, we just skip it and allow it to add it as percent.
-          char = types[char](args.pop());
+                            // If no more args, we just ignore it (and actually add a '%').
+          if (args.length !== 0) {
+            char = types[char](args.pop());
+          } else {
+            char = `%${char}`;
+          }
         }
       }
     }
     result += char;
-    if (args.length === 0 || i > lastIndex) {
+    if (i > lastIndex) {
       return `${result}${format.substr(i + 1)}`;
     }
   }
