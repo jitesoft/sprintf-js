@@ -8,9 +8,9 @@ test:
   variables:
     NODE_ENV: development
   before_script:
-    - npm install
+    - npm ci
   script:
-    - npm run test
+    - npm test
 
 deploy:
   stage: deploy

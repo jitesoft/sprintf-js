@@ -25,7 +25,7 @@
  * @param {...*} [args]
  * @return {String}
  */
-export default function sprintf(format, ...args) {
+export default function sprintf (format, ...args) {
   const lastIndex = format.lastIndexOf('%');
   if (lastIndex === -1) {
     return format;
@@ -41,8 +41,9 @@ export default function sprintf(format, ...args) {
     if (char === '%') {
       if (i !== len) {
         char = format.charAt(++i);
-        if (char !== '%') { // If %, we just skip it and allow it to add it as percent.
-                            // If no more args, we just ignore it (and actually add a '%').
+        if (char !== '%') {
+          // If %, we just skip it and allow it to add it as percent.
+          // If no more args, we just ignore it (and actually add a '%').
           if (args.length !== 0) {
             char = types[char](args.pop());
           } else {
@@ -58,7 +59,7 @@ export default function sprintf(format, ...args) {
   }
 
   return result;
-};
+}
 
 const types = {
   /* Integer */
@@ -105,7 +106,7 @@ const types = {
   /* Char */
   c: (val) => {
     val = String(val);
-    return val.length <= 0 ? '[NULL]' : val[0]
+    return val.length <= 0 ? '[NULL]' : val[0];
   },
   /* String */
   s: (val) => String(val),
