@@ -27,7 +27,7 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    library: 'sprintf',
+    library: '@jitesoft/sprintf',
     libraryTarget: 'umd',
     globalObject: 'this'
   }
