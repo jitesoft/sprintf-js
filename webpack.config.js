@@ -28,6 +28,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     library: 'sprintf',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this'
   }
 };
