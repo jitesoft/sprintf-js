@@ -1,5 +1,6 @@
 # Sprintf
 
+[![npm (scoped)](https://img.shields.io/npm/v/@jitesoft/sprintf)](https://www.npmjs.com/package/@jitesoft/sprintf)
 [![Known Vulnerabilities](https://dev.snyk.io/test/npm/@jitesoft/sprintf/badge.svg)](https://dev.snyk.io/test/npm/@jitesoft/sprintf)
 [![pipeline status](https://gitlab.com/jitesoft/open-source/javascript/sprintf/badges/master/pipeline.svg)](https://gitlab.com/jitesoft/open-source/javascript/sprintf/commits/master)
 [![coverage report](https://gitlab.com/jitesoft/open-source/javascript/sprintf/badges/master/coverage.svg)](https://gitlab.com/jitesoft/open-source/javascript/sprintf/commits/master)
