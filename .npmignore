@@ -2,3 +2,5 @@ webpack.config.js
 .gitlab-ci.yml
 .babelrc
 .eslintrc.json
+.github
+tests
