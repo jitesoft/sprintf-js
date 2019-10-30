@@ -138,21 +138,21 @@ const types = {
       const dotIndex = padded.indexOf('.');
       return padded.substr(0, dotIndex) + padded.substr(dotIndex, p + 1);
     }
-    return isNaN(val) ? 'NaN' : val.toString(10);
+    return isNaN(val) ? 'NaN' : val.toString(rad);
   },
   /* Float */
   f: (val, p) => {
     return types.d(val, p);
   },
   /* Hex float (lower case) */
-  a: (val) => {
-    val = parseFloat(val);
-    return isNaN(val) ? 'NaN' : val.toString(16).toLowerCase();
+  a: (val, p) => {
+    val = types.d(val, p, 16);
+    return val === 'NaN' ? 'NaN' : val.toLowerCase();
   },
   /* Hex float (upper case) */
-  A: (val) => {
-    val = parseFloat(val);
-    return isNaN(val) ? 'NaN' : val.toString(16).toUpperCase();
+  A: (val, p) => {
+    val = types.d(val, p, 16);
+    return val === 'NaN' ? 'NaN' : val.toUpperCase();
   },
   /* Char */
   c: (val) => {
