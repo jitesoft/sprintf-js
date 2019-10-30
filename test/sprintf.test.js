@@ -97,19 +97,28 @@ describe('Tests for sprintf.', () => {
           });
 
           test('Precision rounding with .50', () => {
-            expect(sprintf('%d.50', 1.23)).toEqual('1.23' + [].fill(0, 0, 48).join(''));
-            expect(sprintf('%d.50', 1)).toEqual('1.' + [].fill(0, 0, 50).join(''));
-            expect(sprintf('%f.50', 1.23)).toEqual('1.23' + [].fill(0, 0, 48).join(''));
-            expect(sprintf('%f.50', 1)).toEqual('1.' + [].fill(0, 0, 50).join(''));
+            expect(sprintf('%d.50', 1.23)).toEqual('1.23' + '0'.repeat(48));
+            expect(sprintf('%d.50', 1)).toEqual('1.' + '0'.repeat(50));
+            expect(sprintf('%f.50', 1.23)).toEqual('1.23' + '0'.repeat(48));
+            expect(sprintf('%f.50', 1)).toEqual('1.' + '0'.repeat(50));
           });
 
-          test('Precision rounding with .e', () => {
-            expect(sprintf('abc %d.e', 123)).toEqual('abc 123.', [].fill(0, 0, 16).join(''));
-            expect(sprintf('abc %d.e', 123.123123123123123123123123123)).toEqual('abc 123.1231231231231231');
-            expect(sprintf('abc %d.e', 123.123123)).toEqual('abc 123.1231230000000000');
-            expect(sprintf('abc %f.e', 123)).toEqual('abc 123.', [].fill(0, 0, 16).join(''));
-            expect(sprintf('abc %f.e', 123.123123123123123123123123123)).toEqual('abc 123.1231231231231231');
-            expect(sprintf('abc %f.e', 123.123123)).toEqual('abc 123.1231230000000000');
+          test('Precision rounding with .d', () => {
+            expect(sprintf('abc %d.0xa', 123)).toEqual('abc 123.' + '0'.repeat(10));
+            expect(sprintf('abc %d.0xa', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
+            expect(sprintf('abc %d.0xa', 123.123123)).toEqual('abc 123.1231230000');
+            expect(sprintf('abc %f.0xa', 123)).toEqual('abc 123.' + '0'.repeat(10));
+            expect(sprintf('abc %f.0xa', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
+            expect(sprintf('abc %f.0xa', 123.123123)).toEqual('abc 123.1231230000');
+          });
+
+          test('Precision rounding with .012', () => {
+            expect(sprintf('abc %d.012', 123)).toEqual('abc 123.' + '0'.repeat(10));
+            expect(sprintf('abc %d.012', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
+            expect(sprintf('abc %d.012', 123.123123)).toEqual('abc 123.1231230000');
+            expect(sprintf('abc %f.012', 123)).toEqual('abc 123.' + '0'.repeat(10));
+            expect(sprintf('abc %f.012', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
+            expect(sprintf('abc %f.012', 123.123123)).toEqual('abc 123.1231230000');
           });
 
           test('Precision rounding with .s', () => {
