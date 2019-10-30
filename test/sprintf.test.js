@@ -104,10 +104,10 @@ describe('Tests for sprintf.', () => {
           });
 
           test('Precision rounding with .s', () => {
-            expect(sprintf('abc %.sd', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %.sd', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %.sf', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %.sf', 123)).toEqual('abc 123.s');
+            expect(sprintf('abc %.sd', 123)).toEqual('abc .sd');
+            expect(sprintf('abc %.sd', 123)).toEqual('abc .sd');
+            expect(sprintf('abc %.sf', 123)).toEqual('abc .sf');
+            expect(sprintf('abc %.sf', 123)).toEqual('abc .sf');
           });
         });
 
@@ -140,10 +140,10 @@ describe('Tests for sprintf.', () => {
             });
 
             test('Precision rounding with .s', () => {
-              expect(sprintf('abc %.sA', 123)).toEqual('abc 7B.s');
-              expect(sprintf('abc %.sA', 123)).toEqual('abc 7B.s');
-              expect(sprintf('abc %.sa', 123)).toEqual('abc 7b.s');
-              expect(sprintf('abc %.sa', 123)).toEqual('abc 7b.s');
+              expect(sprintf('abc %.sA', 123)).toEqual('abc .sA');
+              expect(sprintf('abc %.sA', 123)).toEqual('abc .sA');
+              expect(sprintf('abc %.sa', 123)).toEqual('abc .sa');
+              expect(sprintf('abc %.sa', 123)).toEqual('abc .sa');
             });
           });
         });

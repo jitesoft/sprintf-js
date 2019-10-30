@@ -46,28 +46,20 @@ export default function sprintf (format, ...args) {
           // If no more args, we just ignore it (and actually add a '%').
           if (args.length !== 0) {
             // To enable precision, we have to check for a '.' after the %
-            // If it can, wwe pass that as an extra argument in the types conversion.
             let precision = null;
-            if (mayHavePrecision(char) && format.charAt(i + 1) === '.') {
-              i++; // Skipp the dot.
-              // The parseInt function will parse any integer value coming
-              // next in the string, we cant remove it until we have the char-length
-              // of the actual number, so we first parse it out, then add its length
-              // to the integer counter.
-              const substring = format.substr(i + 1);
-              // Fetch radix, we need that before we convert.
-              const { radix, radixPrefix } = parseRadix(substring);
-              const num = parseInt(substring, radix);
-              if (!isNaN(num)) {
-                // Add length of string to the counter.
-                i += (radixPrefix + num.toString(radix)).length;
+            if (format.charAt(i) === '.') {
+              i++; // Move over dot.
+              const num = parseInt(format.substr(i), 10);
+              const len = num.toString(10).length;
+              if (!isNaN(num) && mayHavePrecision(format.charAt(i + len))) {
+                i += len;
                 precision = num;
+                char = format.charAt(i);
               } else {
-                // If the value after . is not a number, we go back a step to allow '123. more text' like occurrences.
                 i--;
               }
             }
-            char = types[char](args.pop(), precision);
+            char = types[char]?.(args.pop(), precision) || char;
           } else {
             char = `%${char}`;
           }
@@ -82,17 +74,6 @@ export default function sprintf (format, ...args) {
 
   return result;
 }
-
-const parseRadix = (val) => {
-  if (val.startsWith('0')) {
-    if (val.startsWith('0x')) {
-      return { radixPrefix: '0x', radix: 16 };
-    }
-    return { radixPrefix: '0', radix: 8 };
-  }
-
-  return { radix: 10, radixPrefix: '' };
-};
 
 const mayHavePrecision = (c) => {
   return ['e', 'd', 'f', 'a'].includes(c.toLowerCase());
