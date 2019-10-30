@@ -83,49 +83,31 @@ describe('Tests for sprintf.', () => {
           });
 
           test('Precision rounding with .4', () => {
-            expect(sprintf('ABC %d.4 EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
-            expect(sprintf('ABC %d.4 EFG', 1.23)).toEqual('ABC 1.2300 EFG');
-            expect(sprintf('ABC %f.4 EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
-            expect(sprintf('ABC %f.4 EFG', 1.23)).toEqual('ABC 1.2300 EFG');
+            expect(sprintf('ABC %.4d EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
+            expect(sprintf('ABC %.4d EFG', 1.23)).toEqual('ABC 1.2300 EFG');
+            expect(sprintf('ABC %.4f EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
+            expect(sprintf('ABC %.4f EFG', 1.23)).toEqual('ABC 1.2300 EFG');
           });
 
           test('Precision rounding with .1', () => {
-            expect(sprintf('ABC %d.1 EFG', 1)).toEqual('ABC 1.0 EFG');
-            expect(sprintf('ABC %d.1 EFG', 1.23)).toEqual('ABC 1.2 EFG');
-            expect(sprintf('ABC %f.1 EFG', 1)).toEqual('ABC 1.0 EFG');
-            expect(sprintf('ABC %f.1 EFG', 1.23)).toEqual('ABC 1.2 EFG');
+            expect(sprintf('ABC %.1d EFG', 1)).toEqual('ABC 1.0 EFG');
+            expect(sprintf('ABC %.1d EFG', 1.23)).toEqual('ABC 1.2 EFG');
+            expect(sprintf('ABC %.1f EFG', 1)).toEqual('ABC 1.0 EFG');
+            expect(sprintf('ABC %.1f EFG', 1.23)).toEqual('ABC 1.2 EFG');
           });
 
           test('Precision rounding with .50', () => {
-            expect(sprintf('%d.50', 1.23)).toEqual('1.23' + '0'.repeat(48));
-            expect(sprintf('%d.50', 1)).toEqual('1.' + '0'.repeat(50));
-            expect(sprintf('%f.50', 1.23)).toEqual('1.23' + '0'.repeat(48));
-            expect(sprintf('%f.50', 1)).toEqual('1.' + '0'.repeat(50));
-          });
-
-          test('Precision rounding with .hex', () => {
-            expect(sprintf('abc %d.0xa', 123)).toEqual('abc 123.' + '0'.repeat(10));
-            expect(sprintf('abc %d.0xa', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
-            expect(sprintf('abc %d.0xa', 123.123123)).toEqual('abc 123.1231230000');
-            expect(sprintf('abc %f.0xa', 123)).toEqual('abc 123.' + '0'.repeat(10));
-            expect(sprintf('abc %f.0xa', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
-            expect(sprintf('abc %f.0xa', 123.123123)).toEqual('abc 123.1231230000');
-          });
-
-          test('Precision rounding with .oct', () => {
-            expect(sprintf('abc %d.012', 123)).toEqual('abc 123.' + '0'.repeat(10));
-            expect(sprintf('abc %d.012', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
-            expect(sprintf('abc %d.012', 123.123123)).toEqual('abc 123.1231230000');
-            expect(sprintf('abc %f.012', 123)).toEqual('abc 123.' + '0'.repeat(10));
-            expect(sprintf('abc %f.012', 123.123123123123123123123123123)).toEqual('abc 123.1231231231');
-            expect(sprintf('abc %f.012', 123.123123)).toEqual('abc 123.1231230000');
+            expect(sprintf('%.50d', 1.23)).toEqual('1.23' + '0'.repeat(48));
+            expect(sprintf('%.50d', 1)).toEqual('1.' + '0'.repeat(50));
+            expect(sprintf('%.50f', 1.23)).toEqual('1.23' + '0'.repeat(48));
+            expect(sprintf('%.50f', 1)).toEqual('1.' + '0'.repeat(50));
           });
 
           test('Precision rounding with .s', () => {
-            expect(sprintf('abc %d.s', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %d.s', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %f.s', 123)).toEqual('abc 123.s');
-            expect(sprintf('abc %f.s', 123)).toEqual('abc 123.s');
+            expect(sprintf('abc %.sd', 123)).toEqual('abc 123.s');
+            expect(sprintf('abc %.sd', 123)).toEqual('abc 123.s');
+            expect(sprintf('abc %.sf', 123)).toEqual('abc 123.s');
+            expect(sprintf('abc %.sf', 123)).toEqual('abc 123.s');
           });
         });
 
@@ -137,49 +119,31 @@ describe('Tests for sprintf.', () => {
             });
 
             test('Precision rounding with .4', () => {
-              expect(sprintf('ABC %A.4 EFG', 1.2345678)).toEqual('ABC 1.3C0C EFG');
-              expect(sprintf('ABC %A.4 EFG', 1.23)).toEqual('ABC 1.3AE1 EFG');
-              expect(sprintf('ABC %a.4 EFG', 1.2345678)).toEqual('ABC 1.3c0c EFG');
-              expect(sprintf('ABC %a.4 EFG', 1.23)).toEqual('ABC 1.3ae1 EFG');
+              expect(sprintf('ABC %.4A EFG', 1.2345678)).toEqual('ABC 1.3C0C EFG');
+              expect(sprintf('ABC %.4A EFG', 1.23)).toEqual('ABC 1.3AE1 EFG');
+              expect(sprintf('ABC %.4a EFG', 1.2345678)).toEqual('ABC 1.3c0c EFG');
+              expect(sprintf('ABC %.4a EFG', 1.23)).toEqual('ABC 1.3ae1 EFG');
             });
 
             test('Precision rounding with .1', () => {
-              expect(sprintf('ABC %A.1 EFG', 1)).toEqual('ABC 1.0 EFG');
-              expect(sprintf('ABC %A.1 EFG', 1.23)).toEqual('ABC 1.3 EFG');
-              expect(sprintf('ABC %a.1 EFG', 1)).toEqual('ABC 1.0 EFG');
-              expect(sprintf('ABC %a.1 EFG', 1.23)).toEqual('ABC 1.3 EFG');
+              expect(sprintf('ABC %.1A EFG', 1)).toEqual('ABC 1.0 EFG');
+              expect(sprintf('ABC %.1A EFG', 1.23)).toEqual('ABC 1.3 EFG');
+              expect(sprintf('ABC %.1a EFG', 1)).toEqual('ABC 1.0 EFG');
+              expect(sprintf('ABC %.1a EFG', 1.23)).toEqual('ABC 1.3 EFG');
             });
 
             test('Precision rounding with .50', () => {
-              expect(sprintf('%A.50', 1.23)).toEqual('1.3AE147AE147AE0000000000000000000000000000000000000');
-              expect(sprintf('%A.50', 1)).toEqual('1.' + '0'.repeat(50));
-              expect(sprintf('%a.50', 1.23)).toEqual('1.3ae147ae147ae0000000000000000000000000000000000000');
-              expect(sprintf('%a.50', 1)).toEqual('1.' + '0'.repeat(50));
-            });
-
-            test('Precision rounding with .hex', () => {
-              expect(sprintf('abc %A.0xa', 123)).toEqual('abc 7B.' + '0'.repeat(10));
-              expect(sprintf('abc %A.0xa', 123.123123123123123123123123123)).toEqual('abc 7B.1F84FF3B31');
-              expect(sprintf('abc %A.0xa', 123.123123)).toEqual('abc 7B.1F84FD2A62');
-              expect(sprintf('abc %a.0xa', 123)).toEqual('abc 7b.' + '0'.repeat(10));
-              expect(sprintf('abc %a.0xa', 123.123123123123123123123123123)).toEqual('abc 7b.1f84ff3b31');
-              expect(sprintf('abc %a.0xa', 123.123123)).toEqual('abc 7b.1f84fd2a62');
-            });
-
-            test('Precision rounding with .oct', () => {
-              expect(sprintf('abc %A.012', 123)).toEqual('abc 7B.' + '0'.repeat(10));
-              expect(sprintf('abc %A.012', 123.123123123123123123123123123)).toEqual('abc 7B.1F84FF3B31');
-              expect(sprintf('abc %A.012', 123.123123)).toEqual('abc 7B.1F84FD2A62');
-              expect(sprintf('abc %a.012', 123)).toEqual('abc 7b.' + '0'.repeat(10));
-              expect(sprintf('abc %a.012', 123.123123123123123123123123123)).toEqual('abc 7b.1f84ff3b31');
-              expect(sprintf('abc %a.012', 123.123123)).toEqual('abc 7b.1f84fd2a62');
+              expect(sprintf('%.50A', 1.23)).toEqual('1.3AE147AE147AE0000000000000000000000000000000000000');
+              expect(sprintf('%.50A', 1)).toEqual('1.' + '0'.repeat(50));
+              expect(sprintf('%.50a', 1.23)).toEqual('1.3ae147ae147ae0000000000000000000000000000000000000');
+              expect(sprintf('%.50a', 1)).toEqual('1.' + '0'.repeat(50));
             });
 
             test('Precision rounding with .s', () => {
-              expect(sprintf('abc %A.s', 123)).toEqual('abc 7B.s');
-              expect(sprintf('abc %A.s', 123)).toEqual('abc 7B.s');
-              expect(sprintf('abc %a.s', 123)).toEqual('abc 7b.s');
-              expect(sprintf('abc %a.s', 123)).toEqual('abc 7b.s');
+              expect(sprintf('abc %.sA', 123)).toEqual('abc 7B.s');
+              expect(sprintf('abc %.sA', 123)).toEqual('abc 7B.s');
+              expect(sprintf('abc %.sa', 123)).toEqual('abc 7b.s');
+              expect(sprintf('abc %.sa', 123)).toEqual('abc 7b.s');
             });
           });
         });

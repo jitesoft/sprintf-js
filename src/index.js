@@ -45,8 +45,7 @@ export default function sprintf (format, ...args) {
           // If %, we just skip it and allow it to add it as percent.
           // If no more args, we just ignore it (and actually add a '%').
           if (args.length !== 0) {
-            // To enable precision, we have to check for a '.' after the value
-            // IF it can even have precision.
+            // To enable precision, we have to check for a '.' after the %
             // If it can, wwe pass that as an extra argument in the types conversion.
             let precision = null;
             if (mayHavePrecision(char) && format.charAt(i + 1) === '.') {
@@ -57,11 +56,11 @@ export default function sprintf (format, ...args) {
               // to the integer counter.
               const substring = format.substr(i + 1);
               // Fetch radix, we need that before we convert.
-              const radix = parseRadix(substring);
-              const num = parseInt(substring, radix.val);
+              const { radix, radixPrefix } = parseRadix(substring);
+              const num = parseInt(substring, radix);
               if (!isNaN(num)) {
                 // Add length of string to the counter.
-                i += (radix.prefix + num.toString(radix.val)).length;
+                i += (radixPrefix + num.toString(radix)).length;
                 precision = num;
               } else {
                 // If the value after . is not a number, we go back a step to allow '123. more text' like occurrences.
@@ -87,12 +86,12 @@ export default function sprintf (format, ...args) {
 const parseRadix = (val) => {
   if (val.startsWith('0')) {
     if (val.startsWith('0x')) {
-      return { prefix: '0x', val: 16 };
+      return { radixPrefix: '0x', radix: 16 };
     }
-    return { prefix: '0', val: 8 };
+    return { radixPrefix: '0', radix: 8 };
   }
 
-  return { val: 10, prefix: '' };
+  return { radix: 10, radixPrefix: '' };
 };
 
 const mayHavePrecision = (c) => {
