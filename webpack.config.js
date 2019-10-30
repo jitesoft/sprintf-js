@@ -1,15 +1,9 @@
-const getEnv = () => {
-  return process.env.NODE_ENV === 'production' ? 'production' : 'development';
-};
-
-console.log(getEnv());
-
 const Path = require('path');
 
 module.exports = {
-  mode: getEnv(),
+  mode: process.env.NODE_ENV,
   optimization: {
-    minimize: getEnv() === 'production'
+    minimize: process.env.NODE_ENV === 'production'
   },
   module: {
     rules: [
@@ -21,7 +15,7 @@ module.exports = {
     ]
   },
   entry: {
-    'index': [
+    index: [
       Path.join(__dirname, 'src', 'index.js')
     ]
   },
