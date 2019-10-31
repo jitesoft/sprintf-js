@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Sprintf - String Print Format.
  *
@@ -76,7 +78,7 @@ export default function sprintf (format, ...args) {
 }
 
 const mayHavePrecision = (c) => {
-  return ['e', 'd', 'f', 'a'].includes(c.toLowerCase());
+  return ['e', 'd', 'f', 'a', 's'].includes(c.toLowerCase());
 };
 
 const types = {
@@ -140,7 +142,10 @@ const types = {
     return val.length <= 0 ? '[NULL]' : val[0];
   },
   /* String */
-  s: (val) => String(val),
+  s: (val, len) => {
+    val = String(val);
+    return len ? val.substr(0, len) : val;
+  },
   /* Json (object which will be stringified if possible) */
   j: (val) => JSON.stringify(val)
 };
