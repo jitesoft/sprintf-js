@@ -3,6 +3,20 @@ import sprintf from '../src/index';
 describe('Tests for sprintf.', () => {
   describe('Tests for variable substitution.', () => {
     describe('Integer types', () => {
+      describe('Precision / padd tests.', () => {
+        test('Len more than p does nothing.', () => {
+          expect(sprintf('Hej %.5d på dej!', 1234567)).toEqual('Hej 1234567 på dej!');
+          expect(sprintf('Hej %.1d på dej!', 123)).toEqual('Hej 123 på dej!');
+        });
+
+        test('Len less left-pads 0s.', () => {
+          expect(sprintf('Hej %.5i på dej!', 123)).toEqual('Hej 00123 på dej!');
+          expect(sprintf('Hej %.10i på dej!', 12345)).toEqual('Hej 0000012345 på dej!');
+          expect(sprintf('Hej %.5d på dej!', 123)).toEqual('Hej 00123 på dej!');
+          expect(sprintf('Hej %.10d på dej!', 12345)).toEqual('Hej 0000012345 på dej!');
+        });
+      });
+
       test('Int', () => {
         expect(sprintf('Abc %i EFG', 5)).toEqual('Abc 5 EFG');
         expect(sprintf('Abc %i %i %i %i EFG', 5, 9, 12, 100)).toEqual('Abc 5 9 12 100 EFG');
@@ -139,6 +153,11 @@ describe('Tests for sprintf.', () => {
           });
         });
 
+      });
+    });
+
+    describe('String types', () => {
+      describe('Precision/substring tests.', () => {
         describe('String.', () => {
           test('Precision cuts after n characters.', () => {
             expect(sprintf('abc %.5s efg', '123456abc')).toEqual('abc 12345 efg');
@@ -151,9 +170,7 @@ describe('Tests for sprintf.', () => {
           });
         });
       });
-    });
 
-    describe('String types', () => {
       test('String', () => {
         expect(sprintf('Abc %s EFG', 'weeeee')).toEqual('Abc weeeee EFG');
         expect(sprintf('Abc %s %s %s %s EFG', 'weeeee', 'Hi!', 'cool', 'nice')).toEqual('Abc weeeee Hi! cool nice EFG');
