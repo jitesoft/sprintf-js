@@ -147,6 +147,18 @@ describe('Tests for sprintf.', () => {
             });
           });
         });
+
+        describe('String.', () => {
+          test('Precision cuts after n characters.', () => {
+            expect(sprintf('abc %.5s efg', '123456abc')).toEqual('abc 12345 efg');
+            expect(sprintf('abc %.5s efg', 'Hej san')).toEqual('abc Hej s efg');
+          });
+
+          test('Precision does NOT add if short.', () => {
+            expect(sprintf('abc %.5s efg', 'hej')).toEqual('abc hej efg');
+            expect(sprintf('abc %.5s efg', 'h s')).toEqual('abc h s efg');
+          });
+        });
       });
     });
 
