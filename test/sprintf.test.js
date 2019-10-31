@@ -10,6 +10,13 @@ describe('Tests for sprintf.', () => {
         expect(sprintf('Abc %i %i %i EFG', 5, 'abc', 10)).toEqual('Abc 5 NaN 10 EFG');
       });
 
+      test('Int - as %d', () => {
+        expect(sprintf('Abc %d EFG', 5)).toEqual('Abc 5 EFG');
+        expect(sprintf('Abc %d %d %d %d EFG', 5, 9, 12, 100)).toEqual('Abc 5 9 12 100 EFG');
+        expect(sprintf('Abc %d %d EFG', 5)).toEqual('Abc 5 %d EFG');
+        expect(sprintf('Abc %d %d %d EFG', 5, 'abc', 10)).toEqual('Abc 5 NaN 10 EFG');
+      });
+
       test('Int - Hex', () => {
         expect(sprintf('Abc %x EFG', 5)).toEqual('Abc 5 EFG');
         expect(sprintf('Abc %x %x %x %x EFG', 5, 9, 12, 100)).toEqual('Abc 5 9 c 64 EFG');
@@ -47,13 +54,6 @@ describe('Tests for sprintf.', () => {
     });
 
     describe('Float types', () => {
-      test('Double', () => {
-        expect(sprintf('Abc %d EFG', 5.123)).toEqual('Abc 5.123 EFG');
-        expect(sprintf('Abc %d %d %d %d EFG', 5, 9.123, 12, 1000000.00001)).toEqual('Abc 5 9.123 12 1000000.00001 EFG');
-        expect(sprintf('Abc %d %d EFG', 512312.123)).toEqual('Abc 512312.123 %d EFG');
-        expect(sprintf('Abc %d %d %d EFG', 5.22, 'abc', 10.123)).toEqual('Abc 5.22 NaN 10.123 EFG');
-      });
-
       test('Float', () => {
         expect(sprintf('Abc %f EFG', 5.123)).toEqual('Abc 5.123 EFG');
         expect(sprintf('Abc %f %f %f %f EFG', 5, 9.123, 12, 1000000.00001)).toEqual('Abc 5 9.123 12 1000000.00001 EFG');
@@ -78,34 +78,25 @@ describe('Tests for sprintf.', () => {
       describe('Precision tests.', () => {
         describe('Double/Float', () => {
           test('No precision rounding if no .num', () => {
-            expect(sprintf('ABC %d EFG', 1.23)).toEqual('ABC 1.23 EFG');
             expect(sprintf('ABC %f EFG', 1.23)).toEqual('ABC 1.23 EFG');
           });
 
           test('Precision rounding with .4', () => {
-            expect(sprintf('ABC %.4d EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
-            expect(sprintf('ABC %.4d EFG', 1.23)).toEqual('ABC 1.2300 EFG');
             expect(sprintf('ABC %.4f EFG', 1.2345678)).toEqual('ABC 1.2345 EFG');
             expect(sprintf('ABC %.4f EFG', 1.23)).toEqual('ABC 1.2300 EFG');
           });
 
           test('Precision rounding with .1', () => {
-            expect(sprintf('ABC %.1d EFG', 1)).toEqual('ABC 1.0 EFG');
-            expect(sprintf('ABC %.1d EFG', 1.23)).toEqual('ABC 1.2 EFG');
             expect(sprintf('ABC %.1f EFG', 1)).toEqual('ABC 1.0 EFG');
             expect(sprintf('ABC %.1f EFG', 1.23)).toEqual('ABC 1.2 EFG');
           });
 
           test('Precision rounding with .50', () => {
-            expect(sprintf('%.50d', 1.23)).toEqual('1.23' + '0'.repeat(48));
-            expect(sprintf('%.50d', 1)).toEqual('1.' + '0'.repeat(50));
             expect(sprintf('%.50f', 1.23)).toEqual('1.23' + '0'.repeat(48));
             expect(sprintf('%.50f', 1)).toEqual('1.' + '0'.repeat(50));
           });
 
           test('Precision rounding with .s', () => {
-            expect(sprintf('abc %.sd', 123)).toEqual('abc .sd');
-            expect(sprintf('abc %.sd', 123)).toEqual('abc .sd');
             expect(sprintf('abc %.sf', 123)).toEqual('abc .sf');
             expect(sprintf('abc %.sf', 123)).toEqual('abc .sf');
           });

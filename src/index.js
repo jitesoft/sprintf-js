@@ -9,12 +9,12 @@
  * Available placeholders:
  * <pre>
  *   %i: Integer
+ *   %d: Integer
  *   %o: Octal
  *   %x: Hex (lower case)
  *   %X: Hex (upper case)
  *   %e: Scientific notation (lower case)
  *   %E: Scientific notation (upper case)
- *   %d: Decimal
  *   %f: Float
  *   %a: Hex float (lower case)
  *   %A: Hex float (upper case)
@@ -78,7 +78,7 @@ export default function sprintf (format, ...args) {
 }
 
 const mayHavePrecision = (c) => {
-  return ['e', 'd', 'f', 'a', 's'].includes(c.toLowerCase());
+  return ['e', 'f', 'a', 's'].includes(c.toLowerCase());
 };
 
 const types = {
@@ -107,7 +107,11 @@ const types = {
     return isNaN(val) ? 'NaN' : val.toExponential().toUpperCase();
   },
   /* Decimal */
-  d: (val, p = null, rad = 10) => {
+  d: (val) => {
+    return types.i(val);
+  },
+  /* Float */
+  f: (val, p = null, rad = 10) => {
     val = parseFloat(val);
     if (!isNaN(val) && p !== null) {
       // Annoyance here is that it is not possible to get a 'float' value if there are no floating point at all...
@@ -122,18 +126,14 @@ const types = {
     }
     return isNaN(val) ? 'NaN' : val.toString(rad);
   },
-  /* Float */
-  f: (val, p) => {
-    return types.d(val, p);
-  },
   /* Hex float (lower case) */
   a: (val, p) => {
-    val = types.d(val, p, 16);
+    val = types.f(val, p, 16);
     return val === 'NaN' ? 'NaN' : val.toLowerCase();
   },
   /* Hex float (upper case) */
   A: (val, p) => {
-    val = types.d(val, p, 16);
+    val = types.f(val, p, 16);
     return val === 'NaN' ? 'NaN' : val.toUpperCase();
   },
   /* Char */
