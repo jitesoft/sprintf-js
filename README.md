@@ -38,8 +38,8 @@ if the value is longer (char count) than the precision value, it will cut the re
 Example:
 
 ```javascript
-const floatP  = sprintf('abc %.5f', 1.12345678);   // 'abc 1.12345'
-const floatP2 = sprintf('abc %.5f', 1.12);         // 'abc 1.12000'
+const floatP  = sprintf('abc %.5f', 1.12345678); // 'abc 1.12345'
+const floatP2 = sprintf('abc %.5f', 1.12);       // 'abc 1.12000'
 ```
 
 ## Left-padding support for integer.
@@ -60,6 +60,21 @@ If the string is shorter than the value, nothing will be changed.
 
 ```javascript
 
-const stringP  = sprintf('abc %.5s', 'abc123abc');      // 'abc abc12'
-const stringP2 = sprintf('abc %.10000s', 'abc123abc');  // 'abc abc123abc'
+const stringP  = sprintf('abc %.5s', 'abc123abc');     // 'abc abc12'
+const stringP2 = sprintf('abc %.10000s', 'abc123abc'); // 'abc abc123abc'
 ```
+
+## Missing features to be implemented in future versions:
+
+* Flags
+    * `%.*` precision specifier
+    * `width` specifier
+    * `*width` specifier
+    * `%-` left justify
+    * `%+` right justify
+    * `%space` pad, 
+    * `%#` prefix for ocatl and hex
+    * `%0` 0-pad
+* Specifiers
+    * `g`, `G` for shortest rep of `%e/%f` & `%E/%F`.
+
