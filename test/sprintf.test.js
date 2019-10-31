@@ -3,7 +3,7 @@ import sprintf from '../src/index';
 describe('Tests for sprintf.', () => {
   describe('Tests for variable substitution.', () => {
     describe('Integer types', () => {
-      describe('Precision / padd tests.', () => {
+      describe('Precision / pad tests.', () => {
         test('Len more than p does nothing.', () => {
           expect(sprintf('Hej %.5d på dej!', 1234567)).toEqual('Hej 1234567 på dej!');
           expect(sprintf('Hej %.1d på dej!', 123)).toEqual('Hej 123 på dej!');

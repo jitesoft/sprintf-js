@@ -78,12 +78,21 @@ export default function sprintf (format, ...args) {
 }
 
 const mayHavePrecision = (c) => {
-  return ['e', 'f', 'a', 's'].includes(c.toLowerCase());
+  return ['e', 'f', 'a', 's', 'i', 'd'].includes(c.toLowerCase());
 };
 
 const types = {
   /* Integer */
-  i: (val) => parseInt(val)?.toString(10) || 'NaN',
+  i: (val, minLen) => {
+    val = parseInt(val)?.toString(10);
+    if (isNaN(val)) {
+      return 'NaN';
+    }
+    if (minLen !== null && val.length < minLen) {
+      return '0'.repeat(minLen - val.length) + val;
+    }
+    return val;
+  },
   /* Octal */
   o: (val) => parseInt(val)?.toString(8) || 'NaN',
   /* Hex (lower case) */
@@ -107,8 +116,8 @@ const types = {
     return isNaN(val) ? 'NaN' : val.toExponential().toUpperCase();
   },
   /* Decimal */
-  d: (val) => {
-    return types.i(val);
+  d: (val, minLen) => {
+    return types.i(val, minLen);
   },
   /* Float */
   f: (val, p = null, rad = 10) => {
