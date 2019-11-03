@@ -23,6 +23,16 @@
  *   %j: Json (object which will be stringified if possible)
  * </pre>
  *
+ * Available flags and modifiers:
+ * <pre>
+ * Integer type:
+ *   %.<number><placeholder>: Left-Pad integer value with 0's.
+ * Float type:
+ *   %.<number><placeholder>: Set precision on the resulting output.
+ * String type:
+ *   %.<number>s: Substring (number sets end, always starts at 0).
+ * </pre>
+ *
  * @param {String} format
  * @param {...*} [args]
  * @return {String}
@@ -84,17 +94,21 @@ const mayHavePrecision = (c) => {
 const types = {
   /* Integer */
   i: (val, minLen) => {
-    val = parseInt(val)?.toString(10);
+    val = parseInt(val);
     if (isNaN(val)) {
       return 'NaN';
     }
+    val = val.toString(10);
     if (minLen !== null && val.length < minLen) {
       return '0'.repeat(minLen - val.length) + val;
     }
     return val;
   },
   /* Octal */
-  o: (val) => parseInt(val)?.toString(8) || 'NaN',
+  o: (val) => {
+    val = parseInt(val);
+    return isNaN(val) ? 'NaN' : val.toString(8);
+  },
   /* Hex (lower case) */
   x: (val) => {
     val = parseInt(val);
