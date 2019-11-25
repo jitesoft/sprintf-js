@@ -36,4 +36,4 @@
  * @param args Arguments to replace placeholders with.
  * @return Parsed value.
  */
-export function sprintf (format: string, ...args: any[]): string;
+export default function sprintf (format: string, ...args: any[]): string;
