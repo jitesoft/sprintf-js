@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "esnext": "src/index.js",
   "module": "src/index.js",
+  "types": "sprintf.d.ts",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/jitesoft/open-source/javascript/sprintf"
