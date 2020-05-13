@@ -16,7 +16,9 @@
   "scripts": {
     "test": "eslint src && jest && npm audit",
     "build:prod": "cross-env NODE_ENV=production webpack -p",
-    "build:dev": "cross-env NODE_ENV=develop webpack"
+    "build:dev": "cross-env NODE_ENV=develop webpack",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "sprintf",
@@ -48,5 +50,9 @@
     "jest": "^26.0.1",
     "webpack": "^5.0.0-beta.16",
     "webpack-cli": "^4.0.0-beta.8"
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.320.2"
   }
 }
