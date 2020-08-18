@@ -1,4 +1,3 @@
-
 /**
  * Sprintf - String Print Format.
  *
