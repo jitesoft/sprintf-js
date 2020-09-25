@@ -1,10 +1,7 @@
 const Path = require('path');
 
 module.exports = {
-  mode: process.env.NODE_ENV,
-  optimization: {
-    minimize: process.env.NODE_ENV === 'production'
-  },
+  mode: 'production',
   devtool: false,
   module: {
     rules: [
