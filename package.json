@@ -31,7 +31,7 @@
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "extends": "@jitesoft"
   },
   "author": "Johannes Tegnér <johannes@jitesoft.com>",
@@ -39,16 +39,16 @@
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
-    "@jitesoft/babel-preset-main": "^2.5.3",
-    "@jitesoft/eslint-config": "^2.6.0",
-    "babel-eslint": "^11.0.0-beta.2",
-    "babel-jest": "^26.3.0",
+    "@jitesoft/babel-preset-main": "^2.5.4",
+    "@jitesoft/eslint-config": "^2.8.0",
+    "@babel/eslint-parser": "^7.11.5",
+    "babel-jest": "^26.5.2",
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "eslint": "^7.9.0",
-    "jest": "^26.4.2",
-    "webpack": "^5.0.0-rc.0",
-    "webpack-cli": "^4.0.0-rc.0"
+    "eslint": "^7.11.0",
+    "jest": "^26.5.2",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
   }
 }
