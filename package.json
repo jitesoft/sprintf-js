@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Sprintf function for javascript.",
   "main": "dist/index.js",
-  "esnext": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "sprintf.d.ts",
   "repository": {
@@ -14,7 +13,6 @@
     "url": "https://gitlab.com/jitesoft/open-source/javascript/sprintf/issues"
   },
   "scripts": {
-    "aa": "node_modules/.bin/babel help",
     "test": "eslint src && jest && npm audit",
     "build:prod": "cross-env NODE_ENV=production webpack && babel src/index.js -o dist/index.mjs --compact true",
     "build:dev": "cross-env NODE_ENV=develop webpack"
