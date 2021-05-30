@@ -1,3 +1,5 @@
+export type Param = string | number | object | Array<any> | boolean;
+
 /**
  * Sprintf - String Print Format.
  *
@@ -35,4 +37,4 @@
  * @param args Arguments to replace placeholders with.
  * @return Parsed value.
  */
-export default function sprintf (format: string, ...args: any[]): string;
+export default function sprintf (format: string, ...args: Param[]): string;
