@@ -39,18 +39,18 @@
     "@babel/runtime-corejs3": "^7.17.8"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.8",
-    "@babel/eslint-parser": "^7.17.0",
-    "@jitesoft/babel-preset-main": "3.0.0",
-    "@jitesoft/eslint-config": "4.1.1",
-    "babel-jest": "^27.5.1",
-    "babel-loader": "^8.2.4",
-    "core-js": "^3.21.1",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
+    "@jitesoft/babel-preset-main": "3.0.1",
+    "@jitesoft/eslint-config": "4.1.2",
+    "babel-jest": "^28.1.0",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.22.8",
     "cross-env": "^7.0.3",
-    "eslint": "^8.11.0",
-    "jest": "^27.5.1",
-    "webpack": "^5.70.0",
+    "eslint": "^8.17.0",
+    "jest": "^28.1.0",
+    "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2"
   }
 }
