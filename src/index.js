@@ -71,7 +71,9 @@ export default function sprintf (format, ...args) {
                 i--;
               }
             }
-            char = types[char]?.(args.pop(), precision) || char;
+            if (Object.hasOwn(types, char)) {
+              char = types[char]?.(args.pop(), precision) || char;
+            }
           } else {
             char = `%${char}`;
           }
@@ -167,7 +169,7 @@ const types = {
   /* String */
   s: (val, len) => {
     val = String(val);
-    return len ? val.substr(0, len) : val;
+    return len ? val.substring(0, len) : val;
   },
   /* Json (object which will be stringified if possible) */
   j: (val) => JSON.stringify(val)
