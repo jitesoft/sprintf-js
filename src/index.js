@@ -82,7 +82,7 @@ export default function sprintf (format, ...args) {
     }
     result += char;
     if (i > lastIndex) {
-      return `${result}${format.substr(i + 1)}`;
+      return `${result}${format.substring(i + 1)}`;
     }
   }
 
@@ -147,7 +147,7 @@ const types = {
       // rounding.
       const padded = (val.indexOf('.') !== -1 ? val : val + '.0') + '0'.repeat(p + 1);
       const dotIndex = padded.indexOf('.');
-      return padded.substr(0, dotIndex) + padded.substr(dotIndex, p + 1);
+      return padded.substring(0, dotIndex) + padded.substring(dotIndex, p + 1);
     }
     return isNaN(val) ? 'NaN' : val.toString(rad);
   },
