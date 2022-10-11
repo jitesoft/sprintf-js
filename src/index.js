@@ -61,7 +61,7 @@ export default function sprintf (format, ...args) {
             let precision = null;
             if (format.charAt(i) === '.') {
               i++; // Move over dot.
-              const num = parseInt(format.substr(i), 10);
+              const num = parseInt(format.substring(i), 10);
               const len = num.toString(10).length;
               if (!isNaN(num) && mayHavePrecision(format.charAt(i + len))) {
                 i += len;
@@ -147,7 +147,7 @@ const types = {
       // rounding.
       const padded = (val.indexOf('.') !== -1 ? val : val + '.0') + '0'.repeat(p + 1);
       const dotIndex = padded.indexOf('.');
-      return padded.substring(0, dotIndex) + padded.substring(dotIndex, p + 1);
+      return padded.substring(0, dotIndex) + padded.substring(dotIndex, (dotIndex + p + 1));
     }
     return isNaN(val) ? 'NaN' : val.toString(rad);
   },
