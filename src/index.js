@@ -71,7 +71,7 @@ export default function sprintf (format, ...args) {
                 i--;
               }
             }
-            if (Object.hasOwn(types, char)) {
+            if (hasOwn(types, char)) {
               char = types[char]?.(args.pop(), precision) || char;
             }
           } else {
@@ -173,4 +173,13 @@ const types = {
   },
   /* Json (object which will be stringified if possible) */
   j: (val) => JSON.stringify(val)
+};
+
+const hasOwn = (object, key) => {
+  if (Object.hasOwn) {
+    return Object.hasOwn(object, key);
+  }
+
+  // eslint-disable-next-line no-prototype-builtins
+  return object.hasOwnProperty(key);
 };
