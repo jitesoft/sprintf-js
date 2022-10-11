@@ -13,7 +13,7 @@
     "url": "https://gitlab.com/jitesoft/open-source/javascript/sprintf/issues"
   },
   "scripts": {
-    "test": "eslint && jest",
+    "test": "jest",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "build:dev": "cross-env NODE_ENV=develop webpack"
   },
@@ -27,10 +27,6 @@
     "coverageReporters": [
       "text"
     ]
-  },
-  "eslintConfig": {
-    "parser": "@babel/eslint-parser",
-    "extends": "@jitesoft"
   },
   "author": "Johannes Tegnér <johannes@jitesoft.com>",
   "license": "MIT",
