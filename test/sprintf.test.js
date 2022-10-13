@@ -1,6 +1,10 @@
 import sprintf from '../src/index';
 
 describe('Tests for sprintf.', () => {
+  test('Returns format if no substitutions.', () => {
+    expect(sprintf('Abc,123', 123, 455454)).toBe('Abc,123');
+  });
+
   describe('Tests for variable substitution.', () => {
     describe('Integer types', () => {
       describe('Precision / pad tests.', () => {
@@ -179,9 +183,13 @@ describe('Tests for sprintf.', () => {
 
       test('Char', () => {
         expect(sprintf('Abc %c EFG', 'A')).toBe('Abc A EFG');
-        expect(sprintf('Abc %c %c %c %c EFG', 5, '9', 'T', 'g')).toBe('Abc 5 9 T g EFG');
+        expect(sprintf('Abc %c %c %c %c EFG', '5', '9', 'T', 'g')).toBe('Abc 5 9 T g EFG');
         expect(sprintf('Abc %c %c EFG', '5')).toBe('Abc 5 %c EFG');
         expect(sprintf('Abc %c %c %c EFG', '5', 'abc', '')).toBe('Abc 5 a [NULL] EFG');
+      });
+
+      test('Char (code)', () => {
+        expect(sprintf('%c %c %c %c', 8482, 0xd6, 33, 0x39)).toBe('™ Ö ! 9');
       });
 
       test('Json', () => {

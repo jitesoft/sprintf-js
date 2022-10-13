@@ -1,4 +1,5 @@
 'use strict';
+import hasOwn from 'core-js/actual/object/has-own';
 
 /**
  * Sprintf - String Print Format.
@@ -163,6 +164,10 @@ const types = {
   },
   /* Char */
   c: (val) => {
+    if (val?.constructor?.name === 'Number') {
+      val = String.fromCharCode(val);
+    }
+
     val = String(val);
     return val.length <= 0 ? '[NULL]' : val[0];
   },
@@ -175,11 +180,3 @@ const types = {
   j: (val) => JSON.stringify(val)
 };
 
-const hasOwn = (object, key) => {
-  if (Object.hasOwn) {
-    return Object.hasOwn(object, key);
-  }
-
-  // eslint-disable-next-line no-prototype-builtins
-  return object.hasOwnProperty(key);
-};
