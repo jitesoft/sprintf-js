@@ -73,7 +73,7 @@ const stringP2 = sprintf('abc %.10000s', 'abc123abc'); // 'abc abc123abc'
     * `%-` left justify
     * `%+` right justify
     * `%space` pad, 
-    * `%#` prefix for ocatl and hex
+    * `%#` prefix for octal and hex
     * `%0` 0-pad
 * Specifiers
     * `g`, `G` for shortest rep of `%e/%f` & `%E/%F`.
