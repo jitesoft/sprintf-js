@@ -32,7 +32,7 @@
   "author": "Johannes Tegnér <johannes@jitesoft.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.24.1"
+    "@babel/runtime-corejs3": "^7.26.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",
